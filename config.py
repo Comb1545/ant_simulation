@@ -1,5 +1,8 @@
+import pygame
+
 # Screen size
 WIDTH, HEIGHT = 900, 720
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Colors
 BLACK = (0, 0, 0)

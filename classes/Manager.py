@@ -1,7 +1,7 @@
 from collections import deque
 from config import *
-from Food import Food
-from Pheromones import Pheromone
+from classes.Food import Food
+from classes.Pheromones import Pheromone
 
 class Manager():
     def __init__(self, obj_class):

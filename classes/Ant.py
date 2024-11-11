@@ -3,8 +3,8 @@ import math
 import pygame
 
 from config import *
-from utils import sq_dist
-from Manager import food_manager, pheromone_manager
+from utils import sq_dist, adjust_colour
+from classes.Manager import food_manager, pheromone_manager
 
 class Ant:
     def __init__(self, x, y):
@@ -17,6 +17,7 @@ class Ant:
         self.food_amount = 0
         self.direction_change_cooldown = 0
         self.pheromone_cooldown = PHEROMONE_COOLDOWN
+
     def move(self):
         if sq_dist((self.x, self.y), ANTHILL_POINT) < ANT_SPEED * 2: # returning food to anthill
             self.has_food = False
@@ -78,8 +79,8 @@ class Ant:
     def direction_to_point(self, x, y):
         return math.atan2(y - self.y, x - self.x)
     
-    def draw(self, surface):
-        color = GREEN if self.has_food else WHITE
+    def draw(self, surface, colour):
+        color = adjust_colour(colour, 150) if self.has_food else colour
         pygame.draw.circle(surface, color, (int(self.x), int(self.y)), 3)
 
 ants = [Ant(ANTHILL_POINT[0], ANTHILL_POINT[1]) for _ in range(NUM_OF_ANTS)]

@@ -2,8 +2,8 @@ import pygame
 import math
 
 from config import *
-from Manager import food_manager, pheromone_manager
-from Ant import ants
+from classes.Manager import food_manager, pheromone_manager
+from classes.Ant import ants
 from utils import spawn_food
 
 
@@ -26,12 +26,11 @@ def draw_tile(coords):
 
 # Pygame initialization
 pygame.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 # Spawning initial food
-spawn_food(food_manager, 480, 150, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
-spawn_food(food_manager, 480, 930, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
+#spawn_food(food_manager, 480, 150, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
+#spawn_food(food_manager, 480, 930, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
 
 # Main Loop
 running = True
@@ -59,7 +58,7 @@ while running:
     # Move and draw ants
     for ant in ants:
         ant.move()
-        ant.draw(screen)
+        ant.draw(screen, GREEN)
 
     # Draw food
     for row in food_manager.repository:
@@ -67,6 +66,6 @@ while running:
             for food in tile:
                 food.draw(screen)
     pygame.display.flip()
-    clock.tick(300)
+    clock.tick(60)
 
 pygame.quit()
