@@ -5,9 +5,6 @@ import random
 import math
 
 from config import *
-# Pygame initialization
-pygame.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def spawn_food(x, y, amount):
     for _ in range(amount):
@@ -210,18 +207,18 @@ def draw_tile(coords):
     pygame.draw.rect(screen, GREEN, (coords[1] * tile_width, coords[0] * tile_height, tile_width, tile_height), width=3)
 
 
-
+# Pygame initialization
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
+
+# init objects
 food_manager = Manager(Food)
 pheromone_manager = Manager(Pheromone)
-
 ants = [Ant(ANTHILL_POINT[0], ANTHILL_POINT[1]) for _ in range(NUM_OF_ANTS)]
-
 # Spawning initial food
 spawn_food(480, 150, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
 spawn_food(480, 930, FOOD_SPAWN_AMOUNT_PER_CLICK * 3)
-
-
 
 # Main Loop
 running = True
@@ -243,13 +240,8 @@ while running:
                     break
                 else:
                     pheromone.draw(screen)
-
-    # Draw frame
-    # pygame.draw.rect(screen, WHITE, (0, 0, width, height), width=1)
   
     pygame.draw.circle(screen, YELLOW, ANTHILL_POINT, radius=20)
-
-    # draw_grid()
 
     # Move and draw ants
     for ant in ants:
