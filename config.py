@@ -24,7 +24,7 @@ FOOD_DETECTION_RANGE_SQUARED = 100 ** 2
 FOOD_COLLECTION_RANGE_SQUARED = 10 ** 2
 DIRECTION_TOLERANCE = .7
 
-RANDOM_ANT_DIRECTION = 0 # +- value to randomly move
+RANDOM_ANT_DIRECTION = 0.2 # +- value to randomly move
 # 0.2 is good for simulations but 0 is fun to watch with no food
 
 DIRECTION_CHANGE_COOLDOWN = 5

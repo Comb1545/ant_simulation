@@ -7,9 +7,10 @@ from utils import sq_dist, adjust_colour
 from classes.Manager import food_manager, pheromone_manager
 
 class Ant:
-    def __init__(self, x, y):
+    def __init__(self, x, y, nest):
         self.x = x
         self.y = y
+        self.nest = nest
         self.speed = ANT_SPEED
         self.direction = random.uniform(0, 2 * math.pi)  # Random direction
         self.has_food = False
@@ -64,7 +65,10 @@ class Ant:
         self.direction += random.uniform(-RANDOM_ANT_DIRECTION, RANDOM_ANT_DIRECTION)
         if self.has_food:
             if self.pheromone_cooldown == 0:
-                pheromone_manager.add(int(self.x), int(self.y))  # Leave a pheromone trail
+                if self.nest == "Nest1":
+                    pheromone_manager.add(int(self.x), int(self.y), "Pheromone1")  # Leave a pheromone trail
+                elif self.nest == "Nest2":
+                    pheromone_manager.add(int(self.x), int(self.y), "Pheromone2")  # Leave a pheromone trail                    
                 self.pheromone_cooldown = PHEROMONE_COOLDOWN
             else:
                 self.pheromone_cooldown -= 1

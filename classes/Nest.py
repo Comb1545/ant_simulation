@@ -5,11 +5,12 @@ from classes.Ant import Ant
 from config import screen
 
 class Nest:
-    def __init__(self, x, y, colour):
+    def __init__(self, x, y, colour, nest):
         self.x = x
         self.y = y
+        self.nest = nest
         self.location = (self.x, self.y)
-        self.ants = [Ant(self.x, self.y) for _ in range(NUM_OF_ANTS)]
+        self.ants = [Ant(self.x, self.y, nest) for _ in range(NUM_OF_ANTS)]
         self.food_level = 100
         self.colour = colour
 
@@ -24,5 +25,5 @@ class Nest:
         for ant in self.ants:
             ant.draw(screen, self.colour)
 
-Nest1 = Nest(ANTHILL_POINT_1[0], ANTHILL_POINT_1[1], GREEN)
-Nest2 = Nest(ANTHILL_POINT_2[0], ANTHILL_POINT_2[1], BLUE)
+Nest1 = Nest(ANTHILL_POINT_1[0], ANTHILL_POINT_1[1], GREEN, "Nest1")
+Nest2 = Nest(ANTHILL_POINT_2[0], ANTHILL_POINT_2[1], BLUE, "Nest2")
