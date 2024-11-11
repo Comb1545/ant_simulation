@@ -1,28 +1,9 @@
 import pygame
-import math
 
 from config import *
 from classes.Manager import food_manager, pheromone_manager
-from classes.Ant import ants
 from utils import spawn_food
-
-
-def draw_grid():
-    for row in range(SPATIAL_PARTITIONING_ROWS):
-        tile_height = HEIGHT // SPATIAL_PARTITIONING_ROWS
-        tile_width = WIDTH // SPATIAL_PARTITIONING_COLS
-        for col in range(SPATIAL_PARTITIONING_COLS):
-            pygame.draw.rect(screen, GRAY, (col * tile_width, row * tile_height, tile_width, tile_height), width=1)
-
-def draw_radius():
-    for ant in ants:
-        pygame.draw.circle(screen, WHITE, (ant.x, ant.y), radius=math.sqrt(FOOD_DETECTION_RANGE_SQUARED), width=1)
-
-def draw_tile(coords):
-    tile_height = HEIGHT // SPATIAL_PARTITIONING_ROWS
-    tile_width = WIDTH // SPATIAL_PARTITIONING_COLS
-    pygame.draw.rect(screen, GREEN, (coords[1] * tile_width, coords[0] * tile_height, tile_width, tile_height), width=3)
-
+from classes.Nest import Nest1, Nest2
 
 # Pygame initialization
 pygame.init()
@@ -53,12 +34,13 @@ while running:
                 else:
                     pheromone.draw(screen)
   
-    pygame.draw.circle(screen, YELLOW, ANTHILL_POINT, radius=20)
+    Nest1.draw_nest()
+    Nest1.move_ants()
+    Nest1.draw_ants()
 
-    # Move and draw ants
-    for ant in ants:
-        ant.move()
-        ant.draw(screen, GREEN)
+    Nest2.draw_nest()
+    Nest2.move_ants()
+    Nest2.draw_ants()   
 
     # Draw food
     for row in food_manager.repository:

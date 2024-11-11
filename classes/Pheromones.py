@@ -11,4 +11,4 @@ class Pheromone:
         if self.strength > 0:
             self.strength -= 1
     def draw(self, surface):
-        pygame.draw.circle(surface, (0, 0, int(self.strength / PHEROMONE_STRENGTH * 255)), (self.x, self.y), 3)
+        pygame.draw.circle(surface, (0, 0, int(self.strength / PHEROMONE_STRENGTH * 255)), (self.x, self.y), 1)

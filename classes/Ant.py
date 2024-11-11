@@ -18,7 +18,7 @@ class Ant:
         self.direction_change_cooldown = 0
         self.pheromone_cooldown = PHEROMONE_COOLDOWN
 
-    def move(self):
+    def move(self, ANTHILL_POINT):
         if sq_dist((self.x, self.y), ANTHILL_POINT) < ANT_SPEED * 2: # returning food to anthill
             self.has_food = False
             self.food_to_collect = None
@@ -61,7 +61,7 @@ class Ant:
                             break
             self.direction_change_cooldown = DIRECTION_CHANGE_COOLDOWN
 
-        self.direction += random.uniform(-0.2, 0.2)
+        self.direction += random.uniform(-RANDOM_ANT_DIRECTION, RANDOM_ANT_DIRECTION)
         if self.has_food:
             if self.pheromone_cooldown == 0:
                 pheromone_manager.add(int(self.x), int(self.y))  # Leave a pheromone trail
@@ -75,7 +75,6 @@ class Ant:
             self.direction -= math.pi
         if self.direction_change_cooldown > 0: self.direction_change_cooldown -= 1
 
-
     def direction_to_point(self, x, y):
         return math.atan2(y - self.y, x - self.x)
     
@@ -83,4 +82,4 @@ class Ant:
         color = adjust_colour(colour, 150) if self.has_food else colour
         pygame.draw.circle(surface, color, (int(self.x), int(self.y)), 3)
 
-ants = [Ant(ANTHILL_POINT[0], ANTHILL_POINT[1]) for _ in range(NUM_OF_ANTS)]
+#ants = [Ant(ANTHILL_POINT[0], ANTHILL_POINT[1]) for _ in range(NUM_OF_ANTS)]
